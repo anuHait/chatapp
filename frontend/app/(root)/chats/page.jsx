@@ -5,7 +5,7 @@ const page = () => {
     const { data: session, status } = useSession();
     console.log(session);
   return (
-    <div>
+    <div className='m-5'>
       Hello chats page
     </div>
   )

@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
 import Provider from "@components/Provider";
+import TopBar from "@components/TopBar";
 const inter = Inter({ subsets: ["latin"] });
 import ToasterContext from "@components/ToasterContext";
 export const metadata = {
@@ -11,9 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-blue-300">
+      <body className="">
         <Provider>
         <ToasterContext />
+        <TopBar />
       {children}
     </Provider>
       </body>

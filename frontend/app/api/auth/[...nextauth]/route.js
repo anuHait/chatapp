@@ -1,5 +1,5 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
 
 import { connectToDB } from "@mongodb";
@@ -32,7 +32,9 @@ const handler = NextAuth({
       },
     }),
   ],
+
   secret: process.env.NEXTAUTH_SECRET,
+
   callbacks: {
     async session({session}) {
       const mongodbUser = await User.findOne({ email: session.user.email })
@@ -45,5 +47,4 @@ const handler = NextAuth({
   }
 });
 
-
-  export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };
