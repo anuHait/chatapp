@@ -14,10 +14,46 @@ const Form = ({type}) => {
         formState: { errors },
       } = useForm();
         const router = useRouter();
+        const onSubmit = async (data) => {
+            if (type === "register") {
+              const res = await fetch("/api/auth/register", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              });
+        
+              if (res.ok) {
+                console.log("Account created successfully");
+                toast.success("Account created successfully");
+                router.push("/");
+              }
+        
+              if (res.error) {
+                toast.error("Something went wrong");
+              }
+            }
+        
+            if (type === "login") {
+              const res = await signIn("credentials", {
+                ...data,
+                redirect: false,
+              })
+        
+              if (res.ok) {
+                router.push("/chats");
+              }
+        
+              if (res.error) {
+                toast.error("Invalid email or password");
+              }
+            }
+          };
   return (
-    <div className=''>
+    <div className='flex flex-col items-center justify-center m-20' onSubmit={handleSubmit(onSubmit)} >
       <div></div>
-      <form className="bg-grey-100 flex flex-col items-center justify-center mt-40 p-12" >
+      <form className="bg-white p-8 rounded shadow-md w-96" >
           {type === "register" && (
             <div>
               <div className="input">
@@ -33,7 +69,7 @@ const Form = ({type}) => {
                   })}
                   type="text"
                   placeholder="Username"
-                  className="input-field"
+                  className="mt-1 p-2 w-full border rounded-md"
                 />
               </div>
               {errors.username && (
@@ -49,8 +85,7 @@ const Form = ({type}) => {
                 {...register("email", { required: "Email is required" })}
                 type="email"
                 placeholder="Email"
-                className="input-field"
-              />
+                className="mt-1 p-2 w-full border rounded-md"              />
             </div>
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
@@ -74,27 +109,28 @@ const Form = ({type}) => {
                 })}
                 type="password"
                 placeholder="Password"
-                className="input-field"
-              />
+                className="mt-1 p-2 w-full border rounded-md"              />
             </div>
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
             )}
           </div>
 
-          <button className="button" type="submit">
-            {type === "register" ? "Join Free" : "Let's Chat"}
+          <button  type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          >
+            {type === "register" ? "Join now" : "Let's Chat"}
           </button>
         </form>
         {type === "register" ? (
             <Link href="/" className="link">
-            <p className="text-center">Already have an account? Sign In Here</p>
+            <p className="text-center mt-10 font-semibold">Already have an account? Sign In Here</p>
           </Link>
             
             
           ) : (
             <Link href="/register" className="link">
-              <p className="text-center">Don't have an account? Register Here</p>
+              <p className="text-center mt-10 font-semibold">Don't have an account? Register Here</p>
             </Link>
           )}
     </div>

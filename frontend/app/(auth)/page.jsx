@@ -3,7 +3,7 @@ import Form from '../../components/Form'
 const Login = () => {
   return (
     <div>
-      Hello
+      <h1 className='font-bold '> Hello Bitch</h1>
     </div>
   )
 }

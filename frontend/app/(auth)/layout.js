@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
-
+import ToasterContext from "@components/ToasterContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -11,7 +11,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-blue-300">{children}</body>
+      <body className="bg-blue-300">
+       
+
+      {children}
+     
+      </body>
     </html>
   );
 }
