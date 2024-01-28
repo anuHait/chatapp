@@ -8,6 +8,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { CldUploadButton } from "next-cloudinary";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaPen } from "react-icons/fa";
 
 
 
@@ -58,7 +59,7 @@ const TopBar = () => {
         },
         body: JSON.stringify(data),
       });
-
+      console.log("response after update", res);
       setLoading(false);
       window.location.reload();
     } catch (error) {
@@ -106,18 +107,17 @@ const TopBar = () => {
       {isEditOpen && (
         <div className={`fixed top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-300  z-50`}>
           <div className="p-4 bg-gray-200 w-64 h-screen absolute top-0 shadow-sm rounded-lg right-0">
-          <div className="flex items-center">
+          <div className="flex items-center justify-center">
           <FaArrowLeft className="font-semibold text-lg" onClick={handleEditToggle}/>
           <h1 className="text-center font-semibold text-xl m-4">Profile</h1>
           </div>
-          loading ? (
+         {loading ? (
             <Loader />
           ) : (
             <div className="profile-page">
-              <h1 className="text-heading3-bold">Edit Your Profile</h1>
         
-              <form className="edit-profile" onSubmit={handleSubmit(updateUser)}>
-                <div className="input">
+              <form className="text-center font-semibold" onSubmit={handleSubmit(updateUser)}>
+                <div className="flex justify-between items-center">
                   <input
                     {...register("username", {
                       required: "Username is required",
@@ -129,14 +129,17 @@ const TopBar = () => {
                     })}
                     type="text"
                     placeholder="Username"
-                    className="input-field"
+                    className="text-center font-semibold mb-10 bg-gray-100 rounded-lg"
+                    
                   />
+               
+
                 </div>
                 {error?.username && (
                   <p className="text-red-500">{error.username.message}</p>
                 )}
         
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col items-center justify-between">
                   <img
                     src={
                       watch("profileImage") ||
@@ -144,23 +147,23 @@ const TopBar = () => {
                       "/assets/user.png"
                     }
                     alt="profile"
-                    className="w-40 h-40 rounded-full"
+                    className="w-32 h-32"
                   />
                   <CldUploadButton
                     options={{ maxFiles: 1 }}
                     onUpload={uploadPhoto}
-                    uploadPreset="upecg01j"
+                    uploadPreset="kh1wemgx"
                   >
-                    <p className="text-body-bold">Upload new photo</p>
+                    <p className="text-body-bold mt-5">Upload new photo</p>
                   </CldUploadButton>
                 </div>
         
-                <button className="btn" type="submit">
+                <button className="mt-20 bg-blue-500 text-white p-3 rounded-md" type="submit">
                   Save Changes
                 </button>
               </form>
             </div>
-          );
+          )}
           </div>
           
         </div>
