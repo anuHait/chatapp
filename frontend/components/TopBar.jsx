@@ -69,9 +69,10 @@ const TopBar = () => {
 
   return (
     <div className=" flex flex-row justify-between  items-center m-5">
-      <Link href="/chats">
+      <Link href="/chats" className="flex gap-2 items-center">
         <img src="https://res.cloudinary.com/dcugof3zo/image/upload/v1706384939/chat_b5pual.png" alt="logo" 
         className="w-28 h-28" />
+        <h1 className="text-heading4-bold font-semibold text-3xl">ChatVista</h1>
       </Link>
 
       <div className="flex items-center flex-row gap-4 m-4">

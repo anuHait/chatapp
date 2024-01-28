@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { CldUploadButton } from "next-cloudinary";
 import { IoSend } from "react-icons/io5";
+import { MdAddPhotoAlternate } from "react-icons/md";
+import MessageBox from './MessageBox';
 
 const ChatDetails = ({chatId}) => {
     const [loading,setLoading]=useState(true);
@@ -33,12 +35,50 @@ const ChatDetails = ({chatId}) => {
         }
       };
     
+      const sendText = async () => {
+        try {
+          const res = await fetch("/api/messages", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              chatId,
+              currentUserId: currentUser._id,
+              text,
+            }),
+          });
+    
+          if (res.ok) {
+            setText("");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      const sendPhoto = async (result) => {
+        try {
+          const res = await fetch("/api/messages", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              chatId,
+              currentUserId: currentUser._id,
+              photo: result?.info?.secure_url,
+            }),
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
       useEffect(() => {
         if (currentUser && chatId) getChatDetails();
       }, [currentUser, chatId]);
-      const sendText=async()=>{
-
-      }
+      
   return (
     
         loading ? <Loader />: (
@@ -76,11 +116,29 @@ const ChatDetails = ({chatId}) => {
             )}
             </div>
             {/*Chat body */}
-            <div></div>
+            <div className="chat-body">
+            {chat?.messages?.map((message, index) => (
+              <MessageBox
+                key={index}
+                message={message}
+                currentUser={currentUser}
+              />
+            ))}
+            <div ref={bottomRef} />
+          </div>
+  
             {/*Send Message*/}
             <div>
             <div className="send-message">
-            <div className="flex flex-row items-center shadow-md rounded-md bg-white mt-6 ">
+            <div className="flex flex-row items-center shadow-md rounded-md bg-white mt-6 p-3 ">
+            <CldUploadButton
+                    options={{ maxFiles: 1 }}
+                    onUpload={sendPhoto}
+                    uploadPreset="kh1wemgx"
+                  >
+            <MdAddPhotoAlternate className='text-gray-700 text-2xl'
+           />
+            </CldUploadButton>
               <input
                 type="text"
                 placeholder="Write a message..."

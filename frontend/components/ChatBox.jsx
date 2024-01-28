@@ -18,7 +18,7 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
   const router = useRouter();
 
   return (
-    <div className={`rounded-lg p-10 ${chat?._id === currentChatId && "bg-gray-100"}`}
+    <div className={`rounded-lg p-7 ${chat?._id === currentChatId && "bg-gray-100"}`}
     onClick={() => router.push(`/chats/${chat._id}`)}>
       <div className={`flex items-center flex-row justify-between`}>
       <div className='flex items-center flex-row gap-3 '>
