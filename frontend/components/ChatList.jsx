@@ -13,8 +13,11 @@ const ChatList = () => {
   const [search, setSearch] = useState("");
    const getChats = async () => {
     try {
-      const res = await fetch(`/api/users/${currentUser._id}`);
-      const data=await res.json();
+      const res = await fetch(
+        search !== ""
+          ? `/api/users/${currentUser._id}/searchChat/${search}`
+          : `/api/users/${currentUser._id}`
+      );      const data=await res.json();
       setChats(data);
       setLoading(false);
     } catch (error) {
@@ -25,7 +28,7 @@ const ChatList = () => {
    useEffect(() => {
     if (currentUser) 
     {getChats();}
-   }, [currentUser]);
+   }, [currentUser,search]);
   return (
     <div>
     
@@ -33,7 +36,7 @@ const ChatList = () => {
          loading ? <Loader/> : ( <div className="chat-list">
          <input
            placeholder="Search chat..."
-           className="input-search"
+           className="w-full p-2 rounded-lg border-2 border-gray-200 outline-none"
            value={search}
            onChange={(e) => setSearch(e.target.value)}
          />

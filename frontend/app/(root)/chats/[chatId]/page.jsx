@@ -1,6 +1,6 @@
 import React from 'react'
-
-const ChatDetails = () => {
+import { useParams } from 'next/navigation'
+const ChatPage = () => {
   return (
     <div>
       hello from chat details
@@ -8,4 +8,4 @@ const ChatDetails = () => {
   )
 }
 
-export default ChatDetails
+export default ChatPage

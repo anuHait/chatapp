@@ -78,7 +78,7 @@ const Contacts = () => {
             <div>
             <input
             placeholder="Search contact..."
-            className="input-search"
+            className="w-full p-2 rounded-lg border-2 border-gray-200 outline-none"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -138,7 +138,7 @@ const Contacts = () => {
                 )
             }
             <button className="bg-blue-500 rounded-md text-white"
-            onClick={createChat}> Start a new Conversation</button>
+            onClick={createChat}>Find or  Start a new Conversation</button>
             </div>
             </div>
             </div>
