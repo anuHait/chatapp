@@ -1,5 +1,6 @@
 import { connectToDB } from "@mongodb"
-import Chat from "@models/Chat"
+import Chat from "@models/Chats"
+import User from "@models/User"
 export const POST = async (req, { body }) => {
     try {
         await connectToDB();

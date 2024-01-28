@@ -137,7 +137,8 @@ const Contacts = () => {
                     </>
                 )
             }
-            <button className="bg-blue-500 rounded-md text-white"> Start a new Conversation</button>
+            <button className="bg-blue-500 rounded-md text-white"
+            onClick={createChat}> Start a new Conversation</button>
             </div>
             </div>
             </div>

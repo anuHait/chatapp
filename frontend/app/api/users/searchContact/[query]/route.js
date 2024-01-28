@@ -1,6 +1,6 @@
 import User from "@models/User"
 import { connectToDB } from "@mongodb"
-
+ // using this for the seaching contacts in application
 export const GET = async (req, { params }) => {
   try {
     await connectToDB()
