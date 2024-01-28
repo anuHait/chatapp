@@ -100,7 +100,7 @@ const Contacts = () => {
                     <img
                   src={user.profileImage || "/assets/user.png"}
                   alt="profile"
-                  className="w-10 h-10 rounded-full border-2 p-0.5"
+                  className="w-12 h-12 rounded-full border-2 p-0.5"
                 />
                 <p className="text-base-bold">{user.username}</p>
                     </div>

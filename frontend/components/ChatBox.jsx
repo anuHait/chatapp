@@ -3,7 +3,7 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 
-const ChatBox = ({chat,currentUser}) => {
+const ChatBox = ({chat,currentUser,currentChatId}) => {
   const otherMembers = chat?.members?.filter(
     (member) => member._id !== currentUser._id
   );
@@ -18,7 +18,7 @@ const ChatBox = ({chat,currentUser}) => {
   const router = useRouter();
 
   return (
-    <div className='rounded-lg p-10'
+    <div className={`rounded-lg p-10 ${chat?._id === currentChatId && "bg-gray-100"}`}
     onClick={() => router.push(`/chats/${chat._id}`)}>
       <div className={`flex items-center flex-row justify-between`}>
       <div className='flex items-center flex-row gap-3 '>

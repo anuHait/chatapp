@@ -106,7 +106,7 @@ const TopBar = () => {
       </div>
       {isEditOpen && (
         <div className={`fixed top-0 right-0 bottom-0 left-0 overflow-hidden transition-all duration-300  z-50`}>
-          <div className="p-4 bg-gray-200 w-64 h-screen absolute top-0 shadow-sm rounded-lg right-0">
+          <div className="p-4 bg-gray-100 w-64 h-screen absolute top-0 shadow-sm rounded-lg right-0">
           <div className="flex items-center justify-center">
           <FaArrowLeft className="font-semibold text-lg" onClick={handleEditToggle}/>
           <h1 className="text-center font-semibold text-xl m-4">Profile</h1>
@@ -129,7 +129,7 @@ const TopBar = () => {
                     })}
                     type="text"
                     placeholder="Username"
-                    className="text-center font-semibold mb-10 bg-gray-100 rounded-lg"
+                    className="text-center font-semibold mb-10 bg-blue-2 rounded-lg"
                     
                   />
                
