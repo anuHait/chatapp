@@ -11,9 +11,10 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
   const lastMessage =
     chat?.messages?.length > 0 && chat?.messages[chat?.messages.length - 1];
 
-  const seen = lastMessage?.seenBy?.find(
-    (member) => member._id === currentUser._id
-  );
+    const seen = lastMessage?.seenBy?.find(
+      (member) => member._id === currentUser._id
+    );
+  
 
   const router = useRouter();
 
@@ -43,7 +44,7 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
           ) : (
             <p className="font-semibold">{otherMembers[0]?.username}</p>
           )}
-
+            {/*if no messaging started*/}
           {!lastMessage && <p className="text-small-bold">Started a chat</p>}
 
           {lastMessage?.photo ? (
@@ -60,7 +61,7 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
             )
           ) : (
             <p
-              className={`last-message ${
+              className={`w-[120px] sm:w-[250px] truncate ${
                 seen ? "text-small-medium text-grey-3" : "text-small-bold"
               }`}
             >

@@ -14,14 +14,14 @@ export const GET = async (req, { params }) => {
         path: "members",
         model: User,
       })
-    //   .populate({
-    //     path: "messages",
-    //     model: Message,
-    //     populate: {
-    //       path: "sender seenBy",
-    //       model: User,
-    //     },
-    //   })
+      .populate({
+        path: "messages",
+        model: Message,
+        populate: {
+          path: "sender seenBy",
+          model: User,
+        },
+      })
       .exec();
 
     return new Response(JSON.stringify(chat), { status: 200 });

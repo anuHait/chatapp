@@ -124,7 +124,7 @@ const ChatDetails = ({chatId}) => {
                 currentUser={currentUser}
               />
             ))}
-            <div ref={bottomRef} />
+            <div  />
           </div>
   
             {/*Send Message*/}
