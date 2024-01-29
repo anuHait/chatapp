@@ -1,4 +1,4 @@
-import Chat from "@models/Chat"
+import Chat from "@models/Chats"
 import { connectToDB } from "@mongodb"
 
 export const POST = async (req, { params }) => {

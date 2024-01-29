@@ -51,7 +51,7 @@ const Form = ({type}) => {
             }
           };
   return (
-    <div className='flex flex-col items-center justify-center m-20' onSubmit={handleSubmit(onSubmit)} >
+    <div className='flex flex-col items-center justify-center m-10' onSubmit={handleSubmit(onSubmit)} >
       <div></div>
       <form className="bg-white p-8 rounded shadow-md w-96" >
           {type === "register" && (
