@@ -109,7 +109,7 @@ const Form = ({type}) => {
                 })}
                 type="password"
                 placeholder="Password"
-                className="mt-1 p-2 w-full border rounded-md"              />
+                className="mt-1 p-2 w-full border rounded-md"  />
             </div>
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
@@ -117,7 +117,7 @@ const Form = ({type}) => {
           </div>
 
           <button  type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          className="bg-blue-500 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
           >
             {type === "register" ? "Join now" : "Let's Chat"}
           </button>
