@@ -107,10 +107,10 @@ return loading ? (
             <p className="text-body-bold mt-5">Upload new photo</p>
           </CldUploadButton>
         </div>
-          <h1 className="text-bold text-3xl">Members in the group</h1>
+          <h1 className="text-bold text-2xl">Members in the group</h1>
         <div className="flex flex-wrap gap-3 text-2xl font-semibold">
           {chat?.members?.map((member, index) => (
-            <p className="selected-contact" key={index}>{member.username}</p>
+            <p className="rounded-md shadow-md text-md text-white font-semibold p-2 bg-purple-300" key={index}>{member.username}</p>
           ))}
         </div>
 
