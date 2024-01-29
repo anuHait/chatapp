@@ -1,6 +1,7 @@
 import { connectToDB } from "@mongodb"
 import Chat from "@models/Chats"
 import User from "@models/User"
+import { pusherServer } from "@lib/pusher";
 export const POST = async (req, { body }) => {
     try {
         await connectToDB();
@@ -33,6 +34,14 @@ export const POST = async (req, { body }) => {
         }) 
         Promise.all(updateAllMembers);
     }
+    /* Trigger a Pusher event for each member of the chat about the new chat */
+    chat.members.forEach(async (member) => {
+        try {
+          await pusherServer.trigger(member._id.toString(), "new-chat", chat);
+        } catch (err) {
+          console.error(`Failed to trigger new-chat event`);
+        }
+      });
     return new Response(JSON.stringify(chat), { status: 200 });
     } catch (error) {
         console.log(error);

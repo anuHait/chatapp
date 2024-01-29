@@ -6,7 +6,7 @@ import { CldUploadButton } from "next-cloudinary";
 import { IoSend } from "react-icons/io5";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import MessageBox from './MessageBox';
-
+import { pusherClient } from '@lib/pusher';
 const ChatDetails = ({chatId}) => {
     const [loading,setLoading]=useState(true);
     const [chat, setChat] = useState({});
@@ -79,17 +79,32 @@ const ChatDetails = ({chatId}) => {
         if (currentUser && chatId) getChatDetails();
       }, [currentUser, chatId]);
       
+      useEffect(() => {
+        pusherClient.subscribe(chatId)
+        const handleMessages = async (newMessage) => {
+          setChat((prev) => ({
+            ...prev,
+            messages: [...prev.messages, newMessage],
+          })); 
+        }
+      pusherClient.bind("new-message", handleMessages);
+      return () => {
+        pusherClient.unbind("new-message", handleMessages);
+        pusherClient.unsubscribe(chatId);
+      };
+      },[chatId]);
+
   return (
     
         loading ? <Loader />: (
-            <div className=''>
+            <div className='h-screen flex flex-col rounded-2xl'>
             {/*Chat header */}
-            <div className='flex items-center gap-3 bg-white p-2 rounded-md'>
+            <div className='flex items-center gap-3 bg-white p-2 rounded-md '>
             {chat?.isGroup?(
                 <>
                 <Link href={`/chats/${chatId}/group-info`}>
                   <img
-                    src={chat?.groupPhoto || "/assets/group.png"}
+                    src={chat?.groupPhoto || "/assets/team.png"}
                     alt="group-photo"
                     className="w-16 h-16 rounded-full border-2 p-0.5"
                   />
@@ -128,8 +143,8 @@ const ChatDetails = ({chatId}) => {
           </div>
   
             {/*Send Message*/}
-            <div>
-            <div className="send-message">
+            <div >
+            <div className="send-message  bottom-0 sticky">
             <div className="flex flex-row items-center shadow-md rounded-md bg-white mt-6 p-3 ">
             <CldUploadButton
                     options={{ maxFiles: 1 }}

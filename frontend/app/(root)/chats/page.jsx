@@ -8,12 +8,12 @@ const page = () => {
     console.log(session);
   return (
     <div className='m-5 flex flex-row gap-5'>
-     <div className='w-1/3 max-lg:w-1/2 max-md:w-full border-2'>
+     <div className='w-[45%] max-lg:w-1/2 max-md:w-full border-2 p-4'>
       
       <ChatList/>
      </div>
 
-     <div className='w-1/3 max-lg:w-1/2 max-md:w-full border-2'>
+     <div className='w-[95%] max-lg:w-1/2 max-md:w-full border-2 p-4'>
      <Contacts/>     </div>
     </div>
   )

@@ -101,7 +101,7 @@ const TopBar = () => {
           <img
             src={user?.profileImage || "/assets/user.png"}
             alt="profile"
-            className="w-9 h-9 "
+            className="w-10 h-10 rounded-full border-2 p-0.5 cursor-pointer"
             onClick={handleEditToggle}
           />
       </div>
@@ -148,7 +148,7 @@ const TopBar = () => {
                       "/assets/user.png"
                     }
                     alt="profile"
-                    className="w-32 h-32"
+                    className="w-32 h-32 rounded-full border-2 p-0.5"
                   />
                   <CldUploadButton
                     options={{ maxFiles: 1 }}

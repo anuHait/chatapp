@@ -1,4 +1,4 @@
-//import { pusherServer } from "@lib/pusher";
+import { pusherServer } from "@lib/pusher";
 import Chat from "@models/Chats";
 import Message from "@models/Message";
 import User from "@models/User";
@@ -41,21 +41,21 @@ export const POST = async (req) => {
       })
       .exec();
 
-    // /* Trigger a Pusher event for a specific chat about the new message */
-    // await pusherServer.trigger(chatId, "new-message", newMessage)
+    /* Trigger a Pusher event for a specific chat about the new message */
+    await pusherServer.trigger(chatId, "new-message", newMessage)
 
-    // /* Triggers a Pusher event for each member of the chat about the chat update with the latest message */
-    // const lastMessage = updatedChat.messages[updatedChat.messages.length - 1];
-    // updatedChat.members.forEach(async (member) => {
-    //   try {
-    //     await pusherServer.trigger(member._id.toString(), "update-chat", {
-    //       id: chatId,
-    //       messages: [lastMessage]
-    //     });
-    //   } catch (err) {
-    //     console.error(`Failed to trigger update-chat event`);
-    //   }
-    // });
+    /* Triggers a Pusher event for each member of the chat about the chat update with the latest message */
+    const lastMessage = updatedChat.messages[updatedChat.messages.length - 1];
+    updatedChat.members.forEach(async (member) => {
+      try {
+        await pusherServer.trigger(member._id.toString(), "update-chat", {
+          id: chatId,
+          messages: [lastMessage]
+        });
+      } catch (err) {
+        console.error(`Failed to trigger update-chat event`);
+      }
+    });
 
 
     return new Response(JSON.stringify(newMessage), { status: 200 });

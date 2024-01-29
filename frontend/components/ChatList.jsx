@@ -29,6 +29,8 @@ const ChatList = ({currentChatId}) => {
     if (currentUser) 
     {getChats();}
    }, [currentUser,search]);
+
+   
   return (
     <div>
     

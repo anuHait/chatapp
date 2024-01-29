@@ -75,7 +75,7 @@ const Contacts = () => {
     <div>
     {
         loading ? <Loader/> : (
-            <div>
+            <div className="">
             <input
             placeholder="Search contact..."
             className="w-full p-2 rounded-lg border-2 border-gray-200 outline-none"
@@ -84,7 +84,7 @@ const Contacts = () => {
           />
             <div className=" flex flex-row gap-12 m-10">
             <div className="w-[70%]">
-            <p className="font-semibold">Select Chats</p>
+            <p className="font-semibold text-2xl">Select from your Contacts</p>
             {
                 contacts.map((user,index)=>(
                     <div key={index} 
@@ -114,20 +114,20 @@ const Contacts = () => {
                     <>
                     <div className="flex flex-col gap-3">
                     <div className="flex flex-col gap-3">
-                <p className="text-body-bold">  Group Chat Name</p>
+                <p className="text-lg font-semibold">  Group Chat Name</p>
                 <input
                   placeholder="Enter group chat name..."
-                  className="input-group-name"
+                  className="p-2 border-2 border-gray-200 rounded-lg outline-none"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
               <div className="flex flex-col gap-3">
-                <p className="text-body-bold">Members</p>
+                <p className="text-lg font-semibold">Selected Members</p>
                 <div className="flex flex-wrap gap-3">
                   {selectedContacts.map((contact, index) => (
-                    <p className="selected-contact" key={index}>
+                    <p className="rounded-md shadow-md text-md text-white font-semibold p-2 bg-purple-300" key={index}>
                       {contact.username}
                     </p>
                   ))}
@@ -137,7 +137,7 @@ const Contacts = () => {
                     </>
                 )
             }
-            <button className="bg-blue-500 rounded-md text-white"
+            <button className="bg-blue-500 rounded-md text-white mt-7 p-3 font-semibold"
             onClick={createChat}>Find or  Start a new Conversation</button>
             </div>
             </div>

@@ -25,14 +25,14 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
       <div className='flex items-center flex-row gap-3 '>
       {chat?.isGroup ? (
         <img
-          src={chat?.groupPhoto || <BsFillPeopleFill className='text-gray-400'/>}
+          src={chat?.groupPhoto || "/assets/team.png"}
           alt="group-photo"
           className="w-16 h-16 rounded-full border-2 p-0.5"
 
         />
       ) : (
         <img
-          src={otherMembers[0].profileImage || "/assets/person.jpg"}
+          src={otherMembers[0].profileImage || "/assets/user.png"}
           alt="profile-photo"
           className="w-16 h-16 rounded-full border-2 p-0.5"
 
@@ -71,7 +71,7 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
         </div>
         </div>
         <div>
-        <p className="text-base-light text-grey-3">
+        <p className="text-xs  ">
           {!lastMessage
             ? format(new Date(chat?.createdAt), "p")
             : format(new Date(chat?.lastMessageAt), "p")}
