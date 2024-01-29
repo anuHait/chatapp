@@ -49,11 +49,11 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
 
           {lastMessage?.photo ? (
             lastMessage?.sender?._id === currentUser._id ? (
-              <p className="text-small-medium text-grey-3">You sent a photo</p>
+              <p className=" text-gray-700">You sent a photo</p>
             ) : (
               <p
                 className={`${
-                  seen ? "text-small-medium text-grey-3" : "text-small-bold"
+                  seen ? "text-semibold text-gray-800" : "text-gray-700"
                 }`}
               >
                 Received a photo
@@ -62,7 +62,7 @@ const ChatBox = ({chat,currentUser,currentChatId}) => {
           ) : (
             <p
               className={`w-[120px] sm:w-[250px] truncate ${
-                seen ? "text-small-medium text-grey-3" : "text-small-bold"
+                seen ? "text-semibold text-gray-800" : "text-gray-700"
               }`}
             >
               {lastMessage?.text}

@@ -116,7 +116,7 @@ const ChatDetails = ({chatId}) => {
             )}
             </div>
             {/*Chat body */}
-            <div className="chat-body">
+            <div className="flex-1 flex flex-col gap-5 bg-grey-2 p-5 overflow-y-scroll custom-scrollbar">
             {chat?.messages?.map((message, index) => (
               <MessageBox
                 key={index}

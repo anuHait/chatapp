@@ -13,7 +13,7 @@ const MessageBox = ({ message, currentUser }) => {
         {message?.text ? (
           <p className="w-fit bg-white p-3 rounded-lg text-base-medium">{message?.text}</p>
         ) : (
-          <img src={message?.photo} alt="message" className="w-40 h-40" />
+          <img src={message?.photo} alt="message" className="w-40 h-40 rounded-md shadow-md p-2 border-2 border-gray-100" />
         )}
       </div>
     </div>
@@ -27,7 +27,7 @@ const MessageBox = ({ message, currentUser }) => {
         {message?.text ? (
           <p className="bg-purple-700  text-white rounded-md  p-3">{message?.text}</p>
         ) : (
-          <img src={message?.photo} alt="message" className="w-36 h-36  rounded-md" />
+          <img src={message?.photo} alt="message" className="w-36 h-36 shadow-md p-2 rounded-md border-2 border-purple-700" />
         )}
       </div>
     </div>
